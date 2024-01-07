@@ -60,6 +60,9 @@ matrix:
     #
     # Test latest node and historical LTS releases on Linux/amd64 only.
     #
+    - name: 'Ubuntu - Node.js 18'
+      os: linux
+      node_js: "18"
     - name: 'Ubuntu - Node.js 16'
       os: linux
       node_js: "16"

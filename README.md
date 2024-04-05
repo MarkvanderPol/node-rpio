@@ -17,7 +17,7 @@ as i²c, PWM, and SPI.
 
 * Raspberry Pi Models: A, B, A+, B+, 2, 3, 4, 400, Compute Module, Zero.
 * SunXi (Allwinner V40) Models: Orange Pi Zero, Banana Pi M2 Zero / Berry.
-* Node.js Versions: 0.8, 0.10, 0.12, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14.
+* Node.js Versions: 0.8, 0.10, 0.12, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16, 18, 20.
 
 Currently only basic GPIO is supported on the SunXi chipsets.
 
@@ -33,7 +33,7 @@ above.
 Install the latest using npm:
 
 ```console
-$ npm install rpio
+$ npm install @remarkablearts/rpio
 ```
 
 ## Important System Requirements
@@ -875,6 +875,12 @@ controller handling the chip enable, clock and data in/out functions.
  *   26 |   CE1
  */
 ```
+#### aux SPI
+
+The aux SPI uses the same function names prefixed with aux_, and uses pins 35,
+36,38 and 40. Note that chip_select, cs_polarity, and setDataMode are missing
+as these are not present in the underlying bcm2835 library this module is 
+relying on. The CSPI1_CE2 (pin 38) line is fixed as CS for the aux_spi.
 
 Once SPI is enabled, the SPI pins are unavailable for GPIO use until `spiEnd()`
 is called.
@@ -1013,4 +1019,6 @@ after the first call.
 
 Mike McCauley wrote `src/bcm2835.{c,h}` which are under the GPL.
 
-I wrote the rest, which is under the ISC license unless otherwise specified.
+J Perkin wrote the rest, which is under the ISC license unless otherwise specified.
+
+Mark van der Pol added aux_spi support.
